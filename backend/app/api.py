@@ -14,8 +14,8 @@ data = [
     {
         "id": 1,
         "name": "SPY",
-        "hand_type": 0,
-        "hand_count": 0,
+        "hand_type": 1,
+        "hand_count": 3,
         "rocket_type": 0,
         "rocket_count": 0
     },
@@ -23,8 +23,8 @@ data = [
     {
         "id": 2,
         "name": "AAPL",
-        "hand_type": 0,
-        "hand_count": 0,
+        "hand_type": 1,
+        "hand_count": 4,
         "rocket_type": 0,
         "rocket_count": 0
     }
