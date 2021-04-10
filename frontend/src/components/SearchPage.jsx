@@ -14,8 +14,8 @@ const SearchPage = (props) => {
         return await fetch('http://localhost:8000/api/table')
             .then(response => response.json())
             .then(data => {
-                setCompanyList(data.table)
-                setCompanyListDefault(data.table)
+                setCompanyList(data)
+                setCompanyListDefault(data)
             });
     }
 

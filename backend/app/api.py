@@ -42,8 +42,8 @@ app.add_middleware(
 # functions
 # this gets the table `data`
 @app.get("/api/table")
-async def table() -> dict:
-    return {"table": data}
+async def table():
+    return data
 
 
 # this calculates the number of hands/rockets (good or bad) for a `stock`
