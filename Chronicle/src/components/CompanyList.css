@@ -22,7 +22,75 @@
     color: white;
   }
 
-  .symbol_img {
+  .diamond_hand,.red_arrow {
       height: 30px;
       width: 30px;
+  }
+  span.tip_dh {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  figure{
+    margin: 0;
+    padding: 0;
+  }
+  .dh:hover span.tip_dh {
+    visibility: visible;
+  }
+  span.tip_ra {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .ra:hover span.tip_ra {
+    visibility: visible;
+  }
+  span.tip_r {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .r:hover span.tip_r {
+    visibility: visible;
+  }
+  span.tip_ph {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .ph:hover span.tip_ph {
+    visibility: visible;
   }
