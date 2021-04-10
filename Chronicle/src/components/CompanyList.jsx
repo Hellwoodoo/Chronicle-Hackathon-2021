@@ -1,19 +1,34 @@
 import React from 'react';
-
+import './CompanyList.css';
 const CompanyList = ({companyList=[]}) => {
   return (
+    <table id="companies">
+      <tr>
+        <th>Company name</th>
+        <th>Total profit</th>
+        <th>Total debt</th>
+        <th>Total assets</th>
+        <th>Total revenue</th>
+        <th>Casino</th>
+      </tr>
     <>
     { companyList.map((data,index) => {
         if (data) {
           return (
-            <div key={data.name}>
-              <h1>{data.name}</h1>
-	    </div>	
+            <tr>
+              <td>{data.name}</td>
+              <td><i class="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i></td>
+              <td><img class="symbol_img" src="/diamond_hand.png" alt="diamond hand"/></td>
+              <td><img class="symbol_img" src="/red_arrow.png" alt="red arrow"/></td>
+              <td></td>
+              <td></td>
+      </tr>	
     	   )	
     	 }
     	 return null
     }) }
     </>
+    </table>
   );
 }
 
