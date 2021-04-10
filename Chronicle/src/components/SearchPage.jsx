@@ -27,7 +27,6 @@ const SearchPage = (props) => {
 	
   return (
     <>
-      <h1>Company List</h1>
       <SearchBar 
        input={input} 
        onChange={updateInput}
