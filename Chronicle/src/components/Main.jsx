@@ -30,31 +30,6 @@ return (
 </Formik>
 </body>
 
-=======
-
-export function Main(props) {
-
-return (
-    <Formik>
-        {({ errors, touched, isSubmitting }) => (
-            <Form>
-                <div>   
-                    <div>
-                        <h1>Easy DD</h1>
-                    </div>
-                    <div>
-                        <Link to="/Result">
-                            <button>
-                                Check out the market
-                            </button>
-                        </Link>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-            </Form>
-        )}
-    </Formik>
 
 )
 }
