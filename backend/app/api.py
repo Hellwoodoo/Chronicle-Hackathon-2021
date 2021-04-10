@@ -22,7 +22,7 @@ data = [
 
     {
         "id": 2,
-        "name": "AAPL",
+        "name": "BLU",
         "hand_type": 1,
         "hand_count": 4,
         "rocket_type": 0,

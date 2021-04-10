@@ -16,14 +16,29 @@ const CompanyList = ({companyList = []}) => {
             <>
                 {companyList.map((data, index) => {
                     if (data) {
+                        let hand_icon;
+                        if (data.hand_type >= 0) {
+                            hand_icon = <img className="symbol_img" src="/diamond_hand.png" alt="diamond hand"/>
+                        } else {
+                            hand_icon = <img className="symbol_img" src="/paper_hand.png" alt="diamond hand"/>
+                        }
+
+                        let rocket_icon;
+                        if (data.rocket_type >= 0) {
+                            rocket_icon = <i className="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i>
+                        } else {
+                            rocket_icon = <img className="symbol_img" src="/comet_crash.png" alt="diamond hand"/>
+                        }
+
+
                         return (
                             <tr>
                                 <td>{data.name}</td>
                                 <td>{[...Array(data.rocket_count)].map(() =>
-                                    (<i className="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i>))
+                                    (rocket_icon))
                                     }</td>
                                 <td>{[...Array(data.hand_count)].map(() =>
-                                    (<img class="symbol_img" src="/diamond_hand.png" alt="diamond hand"/>))
+                                    (hand_icon))
                                     }</td>
                                 <td><img class="symbol_img" src="/red_arrow.png" alt="red arrow"/></td>
                                 <td></td>
