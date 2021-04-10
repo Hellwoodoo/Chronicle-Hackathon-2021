@@ -30,7 +30,6 @@ data = [
     }
 ]
 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -42,14 +41,14 @@ app.add_middleware(
 
 # functions
 # this gets the table `data`
-@app.get("/api/table", tags=["entries"])
-async def table():
-    return data
+@app.get("/api/table")
+async def table() -> dict:
+    return {"table": data}
 
 
 # this calculates the number of hands/rockets (good or bad) for a `stock`
-@app.get("/api/calc/{stock}")
-async def calc(stock: str):
+# note: do not make this async without accompanying await or you will get many errors!
+def calc(stock: str):
     ticker = yf.Ticker(stock)
     history = ticker.history(period="1y", auto_adjust=True)
     open_1y = history.iloc[0, history.columns.get_loc('Open')]
@@ -59,7 +58,7 @@ async def calc(stock: str):
     hand = [0, 0]
     # diamond hands i.e. x% = 10% in 1 year
     # diff_1y is the number of emojis
-    diff_1y = int(round(((open_0y - open_1y) / open_1y) / 0.1))
+    diff_1y = int(round(((open_0y - open_1y) / open_1y) / 0.25))
     if diff_1y > 0:
         hand = [1, diff_1y]
 
@@ -68,19 +67,13 @@ async def calc(stock: str):
 
     # rocket ship i.e. x% = 25% in 2 months
     rocket = [0, 0]
-    diff_2m = int(round(((open_0y - open_2m) / open_2m) / 0.25))
+    diff_2m = int(round(((open_0y - open_2m) / open_2m) / 0.45))
     if diff_2m > 0:
         rocket = [2, diff_2m]
     elif diff_2m < 0:
         rocket = [-2, -diff_2m]
-    return {"hand_type": hand[0],
-            "hand_count": hand[1],
-            "rocket_type": rocket[0],
-            "rocket_count": rocket[1]
-            }
 
-
-
+    return hand, rocket
 
 
 @app.get("/", tags=["root"])
@@ -88,3 +81,12 @@ async def read_root() -> dict:
     return {"message": "Hello World."}
 
 
+@app.on_event("startup")
+def startup_event():
+    for entry in data:
+        new_data = calc(entry["name"])
+        entry["hand_type"] = new_data[0][0]
+        entry["hand_count"] = new_data[0][1]
+        entry["rocket_type"] = new_data[1][0]
+        entry["rocket_count"] = new_data[1][1]
+    return
