@@ -8,10 +8,9 @@ const CompanyList = ({companyList = []}) => {
                 <th>Stock Ticker</th>
                 <th>Short-term rockets: 2 months</th>
                 <th>Consistent performance: 1 year</th>
-                <th>Total debt</th>
-                <th>Total assets</th>
-                <th>Total revenue</th>
+                <th>Percentage short float (Citadel!)</th>
                 <th>Casino</th>
+                <th>Monke together stronk</th>
             </tr>
             <>
                 {companyList.map((data, index) => {
@@ -20,15 +19,24 @@ const CompanyList = ({companyList = []}) => {
                         if (data.hand_type >= 0) {
                             hand_icon = <img className="symbol_img" src="/diamond_hand.png" alt="diamond hand"/>
                         } else {
-                            hand_icon = <img className="symbol_img" src="/paper_hand.png" alt="diamond hand"/>
+                            hand_icon = <img className="symbol_img" src="/paper_hand.png" alt="paper hand"/>
                         }
 
                         let rocket_icon;
                         if (data.rocket_type >= 0) {
                             rocket_icon = <i className="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i>
                         } else {
-                            rocket_icon = <img className="symbol_img" src="/comet_crash.png" alt="diamond hand"/>
+                            rocket_icon = <img className="symbol_img" src="/comet_crash.png" alt="super paper comet hand"/>
                         }
+
+                        let short_float;
+                        if (data.shortPercentOfFloat < 0) {
+                            short_float = "no short data"
+
+                        } else {
+                            short_float = String(data.shortPercentOfFloat) + "% !!"
+                        }
+
 
 
                         return (
@@ -40,10 +48,10 @@ const CompanyList = ({companyList = []}) => {
                                 <td>{[...Array(data.hand_count)].map(() =>
                                     (hand_icon))
                                     }</td>
-                                <td><img class="symbol_img" src="/red_arrow.png" alt="red arrow"/></td>
+                                <td>{short_float}</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+
 
                             </tr>
                         )

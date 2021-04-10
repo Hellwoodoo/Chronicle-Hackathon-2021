@@ -1,3 +1,5 @@
+import time
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -17,7 +19,8 @@ data = [
         "hand_type": 1,
         "hand_count": 3,
         "rocket_type": 0,
-        "rocket_count": 0
+        "rocket_count": 0,
+        "shortPercentOfFloat": 0.0,
     },
 
     {
@@ -26,7 +29,18 @@ data = [
         "hand_type": 1,
         "hand_count": 4,
         "rocket_type": 0,
-        "rocket_count": 0
+        "rocket_count": 0,
+        "shortPercentOfFloat": 0.0,
+    },
+
+    {
+        "id": 3,
+        "name": "AAPL",
+        "hand_type": 1,
+        "hand_count": 4,
+        "rocket_type": 0,
+        "rocket_count": 0,
+        "shortPercentOfFloat": 0.0,
     }
 ]
 
@@ -73,7 +87,13 @@ def calc(stock: str):
     elif diff_2m < 0:
         rocket = [-2, -diff_2m]
 
-    return hand, rocket
+    # short percentage of float
+    spf = -1.0
+    if "shortPercentOfFloat" in ticker.info:
+        if ticker.info["shortPercentOfFloat"] is not None:
+            spf = ticker.info["shortPercentOfFloat"] * 100
+
+    return hand, rocket, spf
 
 
 @app.get("/", tags=["root"])
@@ -89,4 +109,5 @@ def startup_event():
         entry["hand_count"] = new_data[0][1]
         entry["rocket_type"] = new_data[1][0]
         entry["rocket_count"] = new_data[1][1]
+        entry["shortPercentOfFloat"] = new_data[2]
     return
