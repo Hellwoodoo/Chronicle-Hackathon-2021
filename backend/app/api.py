@@ -9,6 +9,26 @@ origins = [
     "http://localhost:3000",
     "localhost:3000"
 ]
+# crappy database
+data = [
+    {
+        "id": 1,
+        "name": "SPY",
+        "hand_type": 0,
+        "hand_count": 0,
+        "rocket_type": 0,
+        "rocket_count": 0
+    },
+
+    {
+        "id": 2,
+        "name": "AAPL",
+        "hand_type": 0,
+        "hand_count": 0,
+        "rocket_type": 0,
+        "rocket_count": 0
+    }
+]
 
 
 app.add_middleware(
@@ -20,8 +40,16 @@ app.add_middleware(
 )
 
 
+# functions
+# this gets the table `data`
+@app.get("/api/table", tags=["entries"])
+async def table():
+    return data
+
+
+# this calculates the number of hands/rockets (good or bad) for a `stock`
 @app.get("/api/calc/{stock}")
-def calc(stock: str):
+async def calc(stock: str):
     ticker = yf.Ticker(stock)
     history = ticker.history(period="1y", auto_adjust=True)
     open_1y = history.iloc[0, history.columns.get_loc('Open')]
@@ -50,6 +78,9 @@ def calc(stock: str):
             "rocket_type": rocket[0],
             "rocket_count": rocket[1]
             }
+
+
+
 
 
 @app.get("/", tags=["root"])
