@@ -70,7 +70,7 @@ def calc(stock: str):
     open_2m = history.iloc[40, history.columns.get_loc('Open')]
 
     hand = [0, 0]
-    # diamond hands i.e. x% = 10% in 1 year
+    # diamond hands i.e. x% = 25% in 1 year
     # diff_1y is the number of emojis
     diff_1y = int(round(((open_0y - open_1y) / open_1y) / 0.25))
     if diff_1y > 0:
@@ -79,7 +79,7 @@ def calc(stock: str):
     elif diff_1y < 0:
         hand = [-1, -diff_1y]
 
-    # rocket ship i.e. x% = 25% in 2 months
+    # rocket ship i.e. x% = 45% in 2 months
     rocket = [0, 0]
     diff_2m = int(round(((open_0y - open_2m) / open_2m) / 0.45))
     if diff_2m > 0:
