@@ -8,9 +8,7 @@ const CompanyList = ({companyList = []}) => {
                 <th>Stock Ticker</th>
                 <th>Short-term rockets: 2 months</th>
                 <th>Consistent performance: 1 year</th>
-                <th>Percentage short float (Citadel!)</th>
-                <th>Casino</th>
-                <th>Monke together stronk</th>
+                <th>Percentage short float</th>
             </tr>
             <>
                 {companyList.map((data, index) => {

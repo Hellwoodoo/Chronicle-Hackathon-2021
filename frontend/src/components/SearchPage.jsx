@@ -11,7 +11,7 @@ const SearchPage = (props) => {
 
     // fetching the initial data first.
     const fetchData = async () => {
-        return await fetch('http://localhost:8000/api/table')
+        return await fetch('https://localhost:3000/api/table')
             .then(response => response.json())
             .then(data => {
                 setCompanyList(data)
